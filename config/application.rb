@@ -27,5 +27,6 @@ module MustachedWookie
       end
     end
 
+    config.time_zone = 'Helsinki'
   end
 end
