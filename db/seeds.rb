@@ -14,7 +14,7 @@ LA=6
 SU=0
 
 
-def add_lectures(course, start_date, end_date, weekday, hours, minutes, place, length=105)
+def add_lectures(course, place, start_date, end_date, weekday, hours, minutes=15, length=105)
 
   start_date = Date.parse(start_date)
   end_date = Date.parse(end_date)
@@ -29,16 +29,16 @@ def add_lectures(course, start_date, end_date, weekday, hours, minutes, place, l
   end
 end
 
-angular = Course.create(name: 'Angular.js ohjelmointiprojekti', code: '582381', lecturer: 'Matti Luukkainen')
+angular = Course.create(name: 'Angular.js ohjelmointiprojekti')
 
 angular.lectures.create(start: '2014-05-05 10:15', length: '105', place: 'B221')
 
-kaja = Course.create(name:'Käyttöjärjestelmät', code:'582219', lecturer:'Teemu Kerola')
-add_lectures(kaja, '2014-01-13', '2014-02-19', MA, 12, 15, 'B123')
-add_lectures(kaja, '2014-01-13', '2014-02-19', KE, 12, 15, 'B123')
-add_lectures(kaja, '2014-03-10', '2014-04-23', MA, 12, 15, 'B123')
-add_lectures(kaja, '2014-03-10', '2014-04-23', KE, 12, 15, 'B123')
+kaja = Course.create(name:'Käyttöjärjestelmät')
+add_lectures(kaja, 'B123', '2014-01-13', '2014-02-19', MA, 12)
+add_lectures(kaja, 'B123', '2014-01-13', '2014-02-19', KE, 12)
+add_lectures(kaja, 'B123', '2014-03-10', '2014-04-23', MA, 12)
+add_lectures(kaja, 'B123', '2014-03-10', '2014-04-23', KE, 12)
 
-ohtu = Course.create(name: 'Ohjelmistotuotanto', code: '581259', lecturer: 'Matti Luukkainen')
-add_lectures(ohtu, '2014-03-10', '2014-04-22', MA, 14, 15, 'CK112', 165)
-add_lectures(ohtu, '2014-03-10', '2014-04-22', TI, 12, 15, 'CK112')
+ohtu = Course.create(name: 'Ohjelmistotuotanto')
+add_lectures(ohtu, 'CK112', '2014-03-10', '2014-04-22', MA, 14, 15, 165)
+add_lectures(ohtu, 'CK112', '2014-03-10', '2014-04-22', TI, 12)
