@@ -15,6 +15,11 @@ SU=0
 
 
 def add_lectures(course, place, start_date, end_date, weekday, hours, minutes=15, length=105)
+  if course.exercise_groups.find_by(name:'Lectures')
+    lectures = course.exercise_groups.find_by(name:'Lectures')
+  else
+    lectures = course.exercise_groups.create(name:'Lectures')
+  end
 
   Time.zone = 'Helsinki'
 
@@ -24,16 +29,17 @@ def add_lectures(course, place, start_date, end_date, weekday, hours, minutes=15
   (start_date .. end_date).each do |date|
     date = date.in_time_zone
     if date.wday == weekday
-      course.lectures.create(
+      lectures.exercises.create(
           start: date.beginning_of_day + hours.hours + minutes.minutes,
-          length: length, place: place)
+          length: length,
+          place: place)
     end
   end
 end
 
 angular = Course.create(name: 'Angular.js ohjelmointiprojekti')
-
-angular.lectures.create(start: '2014-05-05 10:15', length: '105', place: 'B221')
+add_lectures(angular, 'B221', '2014-05-14', '2014-05-14', MA, 10)
+add_lectures(angular, 'B221', '2014-05-19', '2014-05-19', MA, 9)
 
 kaja = Course.create(name:'Käyttöjärjestelmät')
 add_lectures(kaja, 'B123', '2014-01-13', '2014-02-19', MA, 12)

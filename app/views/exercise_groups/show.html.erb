@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @exercise_group.name %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @exercise_group.course_id %>
+</p>
+
+<%= link_to 'Edit', edit_exercise_group_path(@exercise_group) %> |
+<%= link_to 'Back', exercise_groups_path %>

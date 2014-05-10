@@ -1,0 +1,29 @@
+<h1>Listing exercise_groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Course</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @exercise_groups.each do |exercise_group| %>
+      <tr>
+        <td><%= exercise_group.name %></td>
+        <td><%= exercise_group.course_id %></td>
+        <td><%= link_to 'Show', exercise_group %></td>
+        <td><%= link_to 'Edit', edit_exercise_group_path(exercise_group) %></td>
+        <td><%= link_to 'Destroy', exercise_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Exercise group', new_exercise_group_path %>

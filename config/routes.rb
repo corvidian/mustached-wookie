@@ -1,4 +1,8 @@
 MustachedWookie::Application.routes.draw do
+  resources :exercises
+
+  resources :exercise_groups
+
   resources :lectures
 
   resources :courses
