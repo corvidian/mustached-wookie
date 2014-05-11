@@ -21,6 +21,15 @@ def add_lectures(course, place, start_date, end_date, weekday, hours, minutes=15
     lectures = course.exercise_groups.create(name:'Lectures')
   end
 
+  add_events_to_group(lectures,  place, start_date, end_date, weekday, hours, minutes=15, length=105)
+end
+
+def add_group(course, name, place, start_date, end_date, weekday, hours, minutes=15, length=105)
+  group = course.exercise_groups.create(name:name)
+  add_events_to_group(group,  place, start_date, end_date, weekday, hours, minutes=15, length=105)
+end
+
+def add_events_to_group(group, place, start_date, end_date, weekday, hours, minutes=15, length=105)
   Time.zone = 'Helsinki'
 
   start_date = Date.parse(start_date)
@@ -29,17 +38,25 @@ def add_lectures(course, place, start_date, end_date, weekday, hours, minutes=15
   (start_date .. end_date).each do |date|
     date = date.in_time_zone
     if date.wday == weekday
-      lectures.exercises.create(
+      group.exercises.create(
           start: date.beginning_of_day + hours.hours + minutes.minutes,
           length: length,
           place: place)
     end
   end
+  group
 end
 
 angular = Course.create(name: 'Angular.js ohjelmointiprojekti')
-add_lectures(angular, 'B221', '2014-05-14', '2014-05-14', MA, 10)
-add_lectures(angular, 'B221', '2014-05-19', '2014-05-19', MA, 9)
+add_lectures(angular, 'B221', '2014-05-05', '2014-05-05', MA, 10)
+add_lectures(angular, 'B221', '2014-05-12', '2014-05-12', MA, 9)
+ang1 = add_group(angular, 'Paja', 'B221', '2014-05-05', '2014-05-09', MA, 12, 15, 225)
+puts ang1.inspect
+add_events_to_group(ang1, 'B221', '2014-05-05', '2014-05-09', TI, 12, 15, 225)
+add_events_to_group(ang1, 'B221', '2014-05-05', '2014-05-09', KE, 12, 15, 225)
+add_events_to_group(ang1, 'B221', '2014-05-05', '2014-05-09', TO, 12, 15, 225)
+add_events_to_group(ang1, 'B221', '2014-05-05', '2014-05-09', PE, 12, 15, 225)
+
 
 kaja = Course.create(name:'Käyttöjärjestelmät')
 add_lectures(kaja, 'B123', '2014-01-13', '2014-02-19', MA, 12)

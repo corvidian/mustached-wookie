@@ -5,6 +5,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.includes(exercise_groups: :exercises).all
+    #@courses = Course.all
   end
 
   # GET /courses/1
