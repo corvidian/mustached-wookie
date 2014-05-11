@@ -18,6 +18,7 @@ json.courses @courses do |course|
       json.start exercise.start
       json.length exercise.length
       json.place exercise.place
+      json.event_id exercise.id
     end
   end
 end
